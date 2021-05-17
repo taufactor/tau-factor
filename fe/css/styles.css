@@ -1,0 +1,231 @@
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+    direction: rtl;
+    height: 100%;
+    margin: 0px;
+}
+
+#top-bar {
+    display: table;
+    margin: auto;
+    height: 40pt;
+    line-height: 40pt;
+
+    text-align: center;
+    vertical-align: middle;
+}
+
+#top-bar .spacer {
+    width: 50px;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    padding-right: 10px;
+    display: table-cell;
+}
+
+#top-bar #explanation, #top-bar .input{
+    padding: 0 5px;
+    display: table-cell;
+}
+
+#top-bar .input input {
+    font-size: 14pt;
+    text-align: center;
+}
+
+#top-bar .input input#course_number{
+    width: 150pt;
+    direction: ltr;
+}
+
+#top-bar .input input#course_name{
+    width: 250px;
+}
+
+#top-bar #chrome-install-button {
+        padding: 2px 3px !important;
+        font-size: 14px !important;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-width : 1300px) {
+    #top-bar #chrome-install-span {
+        display: inline !important;
+    }
+}
+
+@media only screen and (min-width : 1300px) {
+    #top-bar .input input#course_name{
+        width: 450px;
+    }
+}
+
+#searching1, #searching2{
+    width: 20pt;
+    display: table-cell;
+
+    background-image: none;
+    background-size: 20pt 20pt;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+
+.ui-autocomplete {
+    max-width: 400pt;
+    max-height: 200pt;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.showcss {
+    display:block;
+}
+
+.hidecss {
+    display:none;
+}
+
+
+
+
+.ui-tabs { direction: rtl; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected,
+.ui-tabs .ui-tabs-nav li.ui-state-default {float: right; }
+.ui-tabs .ui-tabs-nav li a { float: right; }
+.ui-tabs .ui-icon-close {
+    float: right;
+}
+
+#charts {
+    height: auto;
+    overflow-y: auto;
+}
+
+#charts > div > div {
+    display: table;
+    margin: auto;
+    text-align: center;
+}
+
+h3.title {
+    text-align: center;
+}
+
+div.rating {
+    text-align: center;
+}
+
+div.rating img {
+    height: 60px;
+}
+
+.disabled-rating:hover {
+    -webkit-filter: grayscale(70%);
+    filter: grayscale(70%);
+}
+
+.button-holder ol {
+    margin-top: 0px;
+}
+
+.button-holder .titles p {
+    font-weight: bold;
+}
+
+.button-holder li {
+    display: table-row;
+}
+
+.button-holder p, .button-holder div {
+    display: table-cell;
+    padding: 5px 10px;
+}
+
+.ui-button-text  {
+    font-size: 12pt;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;;
+}
+
+.teachers-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+}
+
+
+.tau {
+    font-family: "Times New Roman";
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
+
+.comments {
+    text-align: start !important;
+    width: 50%;
+}
+
+.comments > div {
+    width: 100%;
+    padding: 0px;
+}
+
+.comment-title {
+    font-size: 12px;
+    margin-top: 10px;
+}
+.comment-title > p {
+    display: inline-block;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.comment-content {
+    background-color: #dadaee;
+}
+.comment-content > p {
+    margin: 0;
+    padding: 10px;
+}
+.comment-date {
+    float: left;
+	direction: ltr;
+}
+
+.new-comment {
+    text-align: center !important;
+    margin-top: 20px;
+}
+.new-comment-title {
+    width: 95% !important;
+    text-align: start !important;
+    margin-bottom: 10px;
+}
+.new-comment-content {
+    width: 95% !important;
+}
+
+.fb-like > span, .fb-login-button > span {
+    vertical-align: middle !important;
+}

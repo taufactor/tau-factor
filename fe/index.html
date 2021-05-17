@@ -1,0 +1,1016 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <meta name="description" content="TAU פקטור הוא כלי לריכוז והצגת התפלגויות הציונים של כל הקורסים באוניברסיטת תל-אביב, מכל השנים והמועדים">
+    <meta name="keywords" content="TAU-Factor,TAU Factor,TAU פקטור,התפלגויות ציוניום,אוניברסיטת תל אביב,אוניברסיטת תל-אביב">
+    <title>TAU פקטור</title>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+
+    <link href="css/styles.css" rel="stylesheet">
+
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/abapdjeapgjjmoahkhnidippkjhdmkfo">
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script src="js/jquery-ui-1.11.4.js"></script>
+    <link href="css/jquery-ui.css" rel="stylesheet">
+
+    <script src="js/jquery.form.min.js"></script>
+
+    <script src="https://code.highcharts.com/6.0/highcharts.js"></script>
+    <script src="https://code.highcharts.com/6.0/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/6.0/modules/exporting.js"></script>
+
+    <script>
+    (function(i,s,o,g,r,a,m) {
+        i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+            (i[r].q=i[r].q||[]).push(arguments)
+        },
+        i[r].l=1*new Date();
+            a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];
+            a.async=1;a.src=g;
+            m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73569761-1', 'auto');
+  ga('send', 'pageview');
+
+    </script>
+
+</head>
+<body class="my-test">
+    <div id="fb-root"></div>
+    <script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/he_IL/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div id="top-bar">
+        <div class="input">
+            <input id="course_number" placeholder="מספר קורס" />
+        </div>
+        <div id="searching1"></div>
+        <span class="spacer"><span style="text-align:right;">או</span></span>
+        <div class="input">
+            <input id="course_name" placeholder="שם קורס" />
+        </div>
+        <div id="searching2"></div>
+        <span style="position: absolute; right: 10px; top: 0px;"><div class="fb-like" data-href="https://www.facebook.com/TAUFactor1/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></span>
+        <span id="chrome-install-span" style="position: absolute; left: 10px; top: 0px;"><input type="button" id="chrome-install-button" onclick="javscript: chrome.webstore.install('https://chrome.google.com/webstore/detail/abapdjeapgjjmoahkhnidippkjhdmkfo', installed_successfuly_chrome, failed);" value="התקן תוסף" /></span>
+    </div>
+
+    <div id="charts">
+        <ol>
+            <li><a href="#homepage">TAU פקטור</a></li>
+        </ol>
+        <div id="homepage" style="line-height: 27pt;">
+            <p><span class="tau">TAU</span> פקטור הוא כלי לריכוז והצגת התפלגויות הציונים של כל הקורסים באוניברסיטת תל-אביב, מכל השנים והמועדים (כרגע עד תשע"ד).<br />
+הבידינג התחיל? מתלבט לאיזה קורס כדאי להירשם? מי מפנק בציונים ומי מכשיל את כל התלמידים? עכשיו אפשר לגלות.<br />
+<span class="tau">TAU</span> פקטור מרכז את התפלגויות הציונים בקורסים, ומאפשר לכולם גישה אליהם.</p>
+            <p>כדי לקבל את הנתונים כל מה שצריך לעשות זה להתחיל להקליד באחת התיבות שבראש העמוד. המערכת תציג אופציות מתאימות לחיפוש תוך כדי ההקלדה (החל מ-4 תווים).</p>
+            <p>לאחר הקלקה על אחת האופציות, תופיע לשונית חדשה עם נתוני הקורס המבוקש. על מנת לעבור ללשונית החדשה יש למקם את העכבר עליה.</p>
+            <p>בתוך הלשונית מוצגים כפתורי בחירה וחלון גרפי. כל גרף מקושר לסמסטר מסויים ולמועד מסויים. כלומר יש להפעיל את שני הכפתורים השייכים לו על מנת שיוצג.</p>
+            <p>ניתן להציג נתונים עבור כל הקבוצות בקורס יחד (כפתור "כולם") ו/או עבור קבוצה מסויימת.</p>
+            <p>ניתן להציג נתונים עבור המועד הקובע בקורס (כפתור "קובע") ו/או עבור כל מועד בנפרד.</p>
+            <p><b><i>&bull; אתר זה אינו מטעם אוניברסיטת תל-אביב והנתונים בו מוצגים כשירות לציבור</i></b></p>
+                <!-- 
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9584383139239662" data-ad-slot="9302779238" data-ad-format="auto"></ins>
+            <script type="text/javascript">(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+        </div>
+    </div>
+
+
+    <div id="dialog" title="Alert message" style="display: none;">
+        <div class="ui-dialog-content ui-widget-content">
+            <p> <label id="lblMessage"></label></p>
+        </div>
+    </div>
+
+
+
+
+
+    <script type="text/javascript">
+$.postJSON = function(url, data, callback) {
+    return $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: callback,
+		error: function(response, statusText, xhr, $form) {
+			console.log(response.responseText);
+        },
+	});
+};
+
+$(document).ready(function() {
+    $("#chrome-install-button").button();
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+    if (!isChrome) {
+        $("#chrome-install-span").hide();
+    }
+});
+
+function installed_successfuly_chrome() {
+    var install_button = document.getElementById("chrome-install-button");
+    if (install_button) {
+        install_button.style.display = "none";
+    }
+}
+
+function failed(msg) {
+    if (msg.indexOf("verified sites") != -1) {
+        alert("על מנת להתקין את התוסף יש להיכנס לאתר עם www בהתחלה");
+    }
+}
+
+var GET_vars = {};
+function getUrlVars() {
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        if (key in GET_vars) {
+            if (GET_vars[key].indexOf(value) == -1) {
+                GET_vars[key].push(value);
+            }
+        }
+        else {
+            GET_vars[key] = [value];
+        }
+    });
+}
+
+$(document).ready(function() {
+    getUrlVars();
+    if ("course" in GET_vars) {
+        $.each(GET_vars["course"], function(index, course_number) {
+            loadChart(course_number);
+        });
+    }
+});
+
+
+function insertParam(key, value) {
+    key = encodeURI(key);
+    value = encodeURI(value);
+
+    if (key in GET_vars) {
+        if (GET_vars[key].indexOf(value) == -1) {
+            GET_vars[key].push(value);
+        }
+    }
+    else {
+        GET_vars[key] = [value];
+    }
+
+
+    var GET_string = "";
+    $.each(GET_vars, function(param_key, param_values) {
+        $.each(param_values, function(index, param_value) {
+            GET_string += "&" + param_key + "=" + param_value;
+        });
+    });
+    GET_string = GET_string.substring(1);
+    window.history.pushState("TAU Factor", "", "?" + GET_string);
+}
+
+function removeParam(key, value) {
+    key = encodeURI(key);
+    value = encodeURI(value);
+
+    if (key in GET_vars) {
+        GET_vars[key].splice(GET_vars[key].indexOf(value), 1);
+    }
+
+    var GET_string = "";
+    $.each(GET_vars, function(param_key, param_values) {
+        $.each(param_values, function(index, param_value) {
+            GET_string += "&" + param_key + "=" + param_value;
+        });
+    });
+    GET_string = GET_string.substring(1);
+    window.history.pushState("TAU Factor", "", "?" + GET_string);
+}
+
+
+
+$(function() {
+    var termTemplate = "<span style='font-weight: bold;'>%s</span>";
+    $("#course_number").autocomplete({
+        position: {
+            my : "right top",
+            at: "right bottom"
+        },
+        source: function(request, response) {
+            $.get(
+                '/api/v1/courses/',
+                {
+                    "course_code": request.term
+                },
+                function(data) {
+                    response(data.results.map(
+                        function (course) {
+							const most_common_names = course.most_common_names.map(common_name => common_name.course_name).join(" - ");
+                            return {
+                                course_code: course.course_code,
+								most_common_names: most_common_names,
+                                value: course.course_code,
+                            };
+                        }
+                    ));
+                },
+            );
+        },
+        minLength: 4,
+        search: function(e, ui) {
+            $("#searching1").css("background-image", "url('images/ajax-loader.gif')");
+        },
+        response: function(e, ui) {
+            $("#searching1").css("background-image", "none");
+        },
+        open: function(e, ui) {
+            var acData = $(this).data('uiAutocomplete');
+            var styledTerm = termTemplate.replace('%s', acData.term);
+
+            acData.menu.element.find('li').each(function() {
+                var me = $(this);
+                me.html( me.text().replace(acData.term, styledTerm) );
+            });
+        },
+		focus: function( event, ui ) {
+            $(".ui-autocomplete > li").attr("title", ui.item.most_common_names);
+        },
+        select: function( event, ui ) {
+            if (ui.item) {
+                loadChart(ui.item.course_code);
+            }
+        }
+    }).bind("click", function(e) {
+        $("#course_name").val("");
+        $("#course_number").val("");
+    });
+});
+
+$(function() { 
+    var termTemplate = "<span style='font-weight: bold;'>%s</span>";
+    $("#course_name").autocomplete({
+        position: {
+            my : "right top",
+            at: "right bottom"
+        },
+        source: function(request, response) {
+            $.get(
+                '/api/v1/courses/',
+                {
+                    course_name: request.term
+                },
+                function(data) {
+                    response(data.results.map(
+                        function (course) {
+						    const most_common_names = course.most_common_names.map(common_name => common_name.course_name).join(" - ");
+                            return {
+                                course_code: course.course_code,
+								most_common_names: most_common_names,
+                                value: most_common_names,
+                            };
+                        }
+                    ));
+                },
+            );
+        },
+        minLength: 4,
+        search: function(e, ui) {
+            $("#searching2").css("background-image", "url('images/ajax-loader.gif')");
+        },
+        response: function(e, ui) {
+            $("#searching2").css("background-image", "none");
+        },
+        open: function(e, ui) {
+            var acData = $(this).data('uiAutocomplete');
+            var styledTerm = termTemplate.replace('%s', acData.term);
+
+            acData.menu.element.find('li').each(function() {
+                var me = $(this);
+                me.html( me.text().replace(acData.term, styledTerm) );
+            });
+        },
+		focus: function( event, ui ) {
+            $(".ui-autocomplete > li").attr("title", ui.item.course_code);
+        },
+        select: function( event, ui ) {
+            if (ui.item) {
+                loadChart(ui.item.course_code);
+            }
+        },
+    }).bind("click", function(e) {
+        $("#course_name").val("");
+        $("#course_number").val("");
+    });
+});
+
+
+
+
+function ShowCustomDialog(course_number, course_name) {
+    var title = course_number;
+    if (course_name != course_number)
+        title += " - " + course_name;
+    ShowDialogBox(title, 'לא נמצאו ציוני מבחנים לקורס זה','אישור','', 'GoToAssetList',null);
+}
+
+
+function ShowDialogBox(title, content, btn1text, btn2text, functionText, parameterList) {
+    var btn1css;
+    var btn2css;
+
+    if (btn1text == '') {
+        btn1css = "hidecss";
+    } else {
+        btn1css = "showcss";
+    }
+
+    if (btn2text == '') {
+        btn2css = "hidecss";
+    } else {
+        btn2css = "showcss";
+    }
+    $("#lblMessage").html(content);
+
+    $("#dialog").dialog({
+        resizable: false,
+        title: title,
+        modal: true,
+        width: '600px',
+        height: 'auto',
+        bgiframe: false,
+        hide: { effect: 'fade', duration: 400},
+
+        buttons: [
+            {
+                text: btn1text,
+                "class": btn1css,
+                click: function () {
+                                                            
+                    $("#dialog").dialog('close');
+
+                }
+            },
+            {
+                text: btn2text,
+                "class": btn2css,
+                click: function () {
+                    $("#dialog").dialog('close');
+                }
+            }
+        ]
+    });
+}
+
+
+var tabCount = 1;
+// close icon: removing the tab on click
+$("#charts").delegate("span.ui-icon-close", "click", function() {
+      var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+      $( "#" + panelId ).remove();
+      $("#charts").tabs( "refresh" );
+
+      removeParam("course", panelId);
+
+      tabCount--;
+      if (tabCount == 0) {
+        $("#charts").tabs("destroy");
+        $("#charts").empty();
+      }
+});
+
+
+$( window ).resize(function() {
+    $("#charts").tabs( "refresh" );
+});
+
+
+$("#charts").tabs({event: "mouseover", heightStyle: "fill"});
+function add_tab(title, id) {
+    var link = $("<a>", {"href": "#" + id, "text": title});
+            var x = $("<span>", {"class": 'ui-icon ui-icon-close', "role": 'presentation', "text": "Remove Tab"});
+            var tab = $("<li>").append(link, x);
+
+            var tabs = $("#charts").children("ol");
+            if (tabs.length == 0) {
+                tabs = $("<ol>");
+                $("#charts").prepend(tabs);
+                tabs.append(tab);
+
+                $("#charts").tabs({event: "mouseover", heightStyle: "fill"});
+            } else {
+                tabs = $("#charts");
+     
+                tabs.find( ".ui-tabs-nav" ).append(tab);
+                tabs.tabs( "refresh" );
+            }
+            tabCount++;
+}
+
+/* set tooltip for hidden teachers label */
+$(document).on('mouseenter', '.teachers-label', function() {
+    var $this = $(this);
+
+    if (this.offsetWidth < this.scrollWidth && !$this.attr('title')) {
+        $this.attr('title', $this.text());
+    }
+});
+
+
+const semester_text = {"A": "א", "B": "ב", "SUMMER": "קיץ", "ALL_YEAR": "שנתי"};
+const categories = ["0-49", "50-59", "60-64", "65-69", "70-74", "75-79", "80-84", "85-89", "90-94", "95-100", "200-210"];
+
+
+function create_empty_chart(course_number, course_name, container) {
+    var new_chart = new Highcharts.chart({
+        chart: {
+            type: 'column',
+            renderTo: container.get(0),
+            backgroundColor: null,
+            margin: 75,
+            marginRight: 300,
+            width: 940,
+            options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 10,
+                depth: 50
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: course_name,
+            useHTML: Highcharts.hasBidiBug
+        },
+        subtitle: {
+            text: course_number
+        },
+        plotOptions: {
+            column: {
+                depth: 20,
+                groupPadding: 0.2,
+                events: {
+                    legendItemClick: function () {
+                        return false;
+                    }
+                }
+            }
+        },
+        xAxis: {
+            categories: categories,
+            labels: {
+                autoRotation: 0
+            }
+        },
+        yAxis: {
+            title: {
+                text: null
+            }, 
+            labels: {
+                formatter: function() {
+                    return this.value + '%';
+                }
+            },
+            ceiling: 100/*,
+            max: 100*/
+        },
+        legend: {
+            useHTML: true,
+            rtl: true,
+            symbolRadius: 2,
+            symbolPadding: 5,
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -10,
+            y: 45
+        },
+        tooltip: {
+            useHTML: true,
+            enabled: true,
+            formatter: function () {
+                return '<p style="text-align: center; margin: 0px;">' + this.series.name + '<br /><b>' + this.y.toFixed(2) + '%</b></p>';
+            }
+        }
+    });
+
+
+    $(new_chart.container).bind('mousedown.hc touchstart.hc', function (eStart) {
+        var thisChart = new_chart;
+
+        eStart = thisChart.pointer.normalize(eStart);
+
+        var posX = eStart.pageX,
+            posY = eStart.pageY,
+            alpha = thisChart.options.chart.options3d.alpha,
+            beta = thisChart.options.chart.options3d.beta,
+            newAlpha,
+            newBeta,
+            sensitivity = 5; // lower is more sensitive
+
+        $(document).bind({
+            'mousemove.hc touchdrag.hc': function (e) {
+                // Run beta
+                newBeta = beta + (posX - e.pageX) / sensitivity;
+                thisChart.options.chart.options3d.beta = newBeta;
+
+                // Run alpha
+                newAlpha = alpha + (e.pageY - posY) / sensitivity;
+                thisChart.options.chart.options3d.alpha = newAlpha;
+
+                thisChart.redraw(false);
+            },
+            'mouseup touchend': function () {
+                $(document).unbind('.hc');
+            }
+        });
+    });
+
+    return new_chart;
+}
+
+
+var hebrew_years = {"2010": 'תשע"א', "2011": 'תשע"ב', "2012": 'תשע"ג', "2013": 'תשע"ד', "2014": 'תשע"ה', "2015": 'תשע"ו', "2016": 'תשע"ז', "2017": 'תשע"ח', "2018": 'תשע"ט', "2019": 'תש"פ', "2020": 'תשפ"א', "2021": 'תשפ"ב', "2022": 'תשפ"ג', "2023": 'תשפ"ד', "2024": 'תשפ"ה', "2025": 'תשפ"ו', "2026": 'תשפ"ז', "2027": 'תשפ"ח', "2028": 'תשפ"ט', "2029": 'תש"צ', "2030": 'תשצ"א', "2031": 'תשצ"ב'};
+
+function create_series_name(data) {
+    return hebrew_years[data.year] + "/" + semester_text[data.semester][0] + " - קב': " + group_printable(data.group_name) + " - מועד: " + moed_number_to_name(data.moed);
+}
+
+
+// remove all series (plural) data that isn't in the array
+function remove_series(enabled_data, chart) {
+    var enabled_names = [];
+    $.each(enabled_data, function(index, series_data) {
+        var name = create_series_name(series_data);
+        enabled_names.push(name);
+    });
+
+    var current_visible_series = chart.series;
+
+    var series_to_remove = []
+    $.each(current_visible_series, function(index, series) {
+        if ($.inArray(series.name, enabled_names) == -1) {
+            series_to_remove.push(series);
+        }
+    });
+    $.each(series_to_remove, function(index, series) {
+        series.remove();
+    });
+}
+
+
+function add_series(series_data, chart) {
+    var series_name = create_series_name(series_data);
+
+    var add = true;
+    $.each(chart.series, function(index, series) {
+        if (series.name == series_name) {
+            add = false;
+        }
+    });
+
+    if (add) {
+        grades = [];
+        $.each(categories, function(index, label) {
+            const split_label = label.split("-");
+            const lowest_grade = parseInt(split_label[0]);
+            const highest_grade = parseInt(split_label[1]);
+
+            grades[index] = undefined;
+            for (const grade_range of series_data.grades) {
+                if (lowest_grade === grade_range.lowest_grade && highest_grade === grade_range.highest_grade) {
+                    grades[index] = grade_range.students_in_range;
+                    break;
+                }
+            }
+        });
+
+        chart.addSeries({
+            name: series_name,
+            data: grades
+        });
+    }
+}
+
+
+
+function minimize_data(course_div, mask) {
+    var new_data = [];
+
+
+    const course = course_div.prop("course");
+    const exams = course_div.prop("exams");
+
+    // Terible code and performence - but good enough for now
+    $.each(mask.groups, function(index, enabled_group) {
+        var course_group_id = null;
+        // Try to find the correct backend group id of the current enabled group button (for a specific year and semester)
+        for (const course_instance of course.instances) {
+            // Match year and semester
+            if (enabled_group.year === course_instance.year.toString() && enabled_group.semester === course_instance.semester) {
+                for (const group_in_instance of course_instance.groups) {
+                    // Match group name
+                    if (enabled_group.group === group_in_instance.course_group_name) {
+                        course_group_id = group_in_instance.course_group_id;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (course_group_id === null) {
+            // Did not find the data (should not happen)
+            return;
+        }
+        
+        // Get all enabled moeds for the year and semester
+        var moeds = [];
+        for (const enabled_moed of mask.moeds) {
+            if (enabled_moed.year === enabled_group.year && enabled_moed.semester === enabled_group.semester) {
+                moeds.push(enabled_moed.moed);
+            }
+        }
+        
+        for (const exam of exams) {
+            if (exam.course_group_id === course_group_id && $.inArray(exam.moed.toString(), moeds) >= 0 ) {
+                new_data.push({
+                    year: enabled_group.year,
+                    semester: enabled_group.semester,
+                    moed: exam.moed,
+                    group_name: enabled_group.group,
+                    grades: exam.grades,
+                });
+            }
+        }
+    });
+
+    return new_data;
+}
+
+function collect_show_request_ids(course_div) {
+    var moeds = {};
+    var groups = {};
+
+    checked_groups = [];
+    checked_moeds = [];
+    course_div.find(':checkbox:checked').each(function(index, checkbox) {
+        data = {};
+        const id = $(checkbox).attr("id");
+        for (const item of id.split("_")) {
+            const key_value = item.split(":");
+            data[key_value[0]] = key_value[1];
+        }
+
+        if (data.group !== undefined) {
+            checked_groups.push(data);
+        }
+        else if (data.moed !== undefined) {
+            checked_moeds.push(data);
+        }
+    });
+
+    return {"groups": checked_groups, "moeds": checked_moeds};
+}
+
+function update_chart(course_div, chart) {
+    const mask = collect_show_request_ids(course_div);
+    const enabled_data = minimize_data(course_div, mask);
+
+    remove_series(enabled_data, chart);
+
+    $.each(enabled_data, function(index, series_data) {
+        add_series(series_data, chart);
+    });
+}
+
+function arrayUnique(arr) {
+    return arr.filter(function(item, pos) {
+      return arr.indexOf(item)== pos; 
+    });
+}
+
+function moed_number_to_name(moed_number) {
+    return (moed_number == "0") ? "קובע" : String.fromCharCode(parseInt(moed_number)-1 + "א".charCodeAt(0));
+}
+
+function group_printable(group_name) {
+    return (group_name == "00") ? "כולם" : group_name;
+}
+
+function loadChart(course_code) {
+    $.get(
+        '/api/v1/courses/',
+        {
+            "course_code": course_code,
+        },
+        function(course_response) {
+            if (course_response.count == 0) {
+                ShowCustomDialog(course_code);
+            }
+
+            var exists = false;
+            $("#charts").children().each(function(index, div) {
+                const cur_id = $(div).attr("id");
+                if (cur_id == course_code) {
+                    exists = true;
+                }
+            });
+            if (exists) {
+                return true;
+            }
+            
+            course_data = course_response.results[0];
+
+            // add course number to url
+            insertParam("course", course_code);
+
+            const course_internal_id = course_data.course_id;
+            const course_name = course_data.most_common_names.map(common_name => common_name.course_name).join(" - ");
+
+            /* create base div */
+            const buttons_rows = $("<ol>").append('<li class="titles"><p>שנה</p><p>סמסטר</p><p>מרצים</p><p>קבוצות</p><p>מועדים</p></li>');
+            const buttons_div = $("<div>", {"id": course_code + "buttons", "class": "button-holder"}).append(buttons_rows);
+
+            const chart_div = $("<div>").attr("id", course_code + "chart");
+            const my_chart = create_empty_chart(course_code, course_name, chart_div);
+
+            const ad = $('<div style="position: absolute; top: 100px;"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-9584383139239662" data-ad-slot="4314176431"></ins></div>');
+            //const ad = $('<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-9584383139239662" data-ad-slot="4314176431"></ins>');
+
+            var course_div = $("<div>").attr("id", course_code).append('<h3 class="title">התפלגויות ציונים</h3>', buttons_div, chart_div);
+            course_div.prop("course", course_data);
+            course_div.prop("exams", []);
+            $("#charts").append(course_div);
+
+            //(adsbygoogle = window.adsbygoogle || []).push({});
+
+
+            /* tabs */
+            add_tab(course_name, course_code);
+
+            insertRating(course_div, course_internal_id);
+            insertComments(course_div, course_internal_id);
+
+            $.each(course_data.instances, function(index, instance_data) {
+                if (Math.max(...instance_data.groups.map(group_data => group_data.num_exams)) <= 0) {
+                    // Used <= to support no groups (Math.max(...[]) === -Infinity)
+                    return;
+                }
+            
+                /*create row */
+                const western_year = instance_data.year;
+                const hebrew_year = hebrew_years[western_year];
+
+                const semester = instance_data.semester;
+                const hebrew_semester = semester_text[semester] || "";
+
+                const year_link_url = "http://www2.tau.ac.il/yedion/syllabus.asp?course=" + course_code + "&year=" + western_year;
+
+                const year_label = $("<p>").html('<a target="_blank" href="' + year_link_url + '">' + hebrew_year + '</a>');
+                const semester_label = $("<p>").text(hebrew_semester);
+                const teachers_label = $('<p class="teachers-label">');
+                const group_buttons = $("<div>");
+                const moed_buttons = $("<div>");
+                const row = $("<li>").append(year_label, semester_label, teachers_label, group_buttons, moed_buttons);
+                buttons_rows.append(row);
+
+                var teachers = [];
+
+                const groups_data = instance_data.groups;
+                var found_00_group = false;
+                $.each(groups_data, function(index, group_data) {
+                    if (group_data.num_exams == 0) {
+                        return;
+                    }
+                
+                    const group_teachers = group_data.teachers.map(teacher => teacher.teacher_name);
+                    teachers = teachers.concat(group_teachers);
+
+                    group_name_print = group_printable(group_data.course_group_name);
+                    const id = `course:${course_code}_year:${western_year}_semester:${semester}_group:${group_data.course_group_name}`;
+
+                    const button = $('<input type="checkbox" id="' + id + '">').bind("click", function(e) {
+                        update_chart(course_div, my_chart);
+                    });
+                    if (group_data.course_group_name == "00") {
+                        found_00_group = true;
+                        button.prop('checked', true);
+                    } else if (!found_00_group) {
+                        button.prop('checked', true);
+                    }
+
+                    const label = $('<label for="' + id + '">' + group_name_print + '</label>');
+                    group_buttons.append(button, label);
+                });
+                group_buttons.buttonset();
+                teachers = arrayUnique(teachers);
+                teachers_label.text(teachers.join(", "));
+
+                $.get(
+                    '/api/v1/grades/',
+                    {
+                        "course_instance_id": instance_data.course_instance_id,
+                    },
+                    function(grades_response) {
+                        const exams_data = grades_response.results;
+                        
+                        course_div.prop("exams", function( i, old_exams ) {
+                            return old_exams.concat(exams_data);
+                        });
+                        
+                        const moeds = arrayUnique(exams_data.map(exam => exam.moed).sort());
+                        $.each(moeds, function(index, moed_number) {
+                            moed_name = moed_number_to_name(moed_number);
+                            const id = `course:${course_code}_year:${western_year}_semester:${semester}_moed:${moed_number}`;
+
+                            const button = $('<input type="checkbox" id="' + id + '">').bind("click", function(e) {
+                                update_chart(course_div, my_chart);
+                            });
+                            if (moed_number == 0) {
+                                button.prop('checked', true);
+                            }
+
+                            const label = $('<label for="' + id + '">' + moed_name + '</label>');
+                            moed_buttons.append(button, label);
+                        });
+                        moed_buttons.buttonset();
+                        
+                        // Update chart as new initial data was loaded
+                        update_chart(course_div, my_chart);
+                    },
+                );
+            });
+        }
+    );
+}
+
+function insertRating(div, course_internal_id) {
+    const title = $('<h3 class="title">דירוג</h3>');
+
+    var img = $('<img class="moving-stars" src="images/stars_norank.png" />');
+    const rating_div = $('<div class="rating">').append(img);
+
+    div.prepend(title, rating_div);
+
+    $.get(
+        '/api/v1/ratings/',
+        {
+            course_id: course_internal_id
+        },
+        function(data) {
+			const rating_data = data.results[0];
+            const rating = rating_data.rating;
+        
+            var can_vote = rating_data.can_vote;
+            var user_rating = -1;
+
+            var rank = "_norank";			
+			if (rating > 0.0) {
+				rank = Math.round(rating);
+			}
+			img.attr("src", 'images/stars' + rank + '.png');
+
+            img.on("mousemove", function(e) {
+                if (can_vote) {
+                    var width = e.target.width;
+                    var fifth = Math.round(width / 5);
+
+                    user_rating = Math.floor(e.offsetX / fifth) + 1;
+
+                    $(this).attr("src", "images/stars" + user_rating + ".png");
+                } else {
+                    $(this).addClass("disabled-rating");
+                }
+            });
+
+            img.on("mouseleave", function(e) {
+                if (can_vote) {
+                    $(this).attr("src", 'images/stars' + rank + '.png');
+                }
+            });
+
+            img.on("click", function(e) {
+                if (can_vote) {                
+                    $.postJSON(
+                        '/api/v1/ratings/vote/',
+                        {
+                            course_id: course_internal_id,
+                            rating: user_rating,
+                        },
+                        function(vote_data) {
+                            can_vote = vote_data.can_vote;
+							if (vote_data.rating > 0.0) {
+								rank = Math.round(vote_data.rating);
+								$(this).attr("src", 'images/stars' + rank + '.png');
+							}
+                        },
+                    );
+                }
+            });
+        },
+    );
+}
+
+
+function insertComments(div, course_internal_id) {
+    div.append('<h3 class="title">ביקורות על הקורס</h3>');
+    var comments = $('<div class="comments">');
+    div.append(comments);
+
+    $.get(
+        '/api/v1/comments/',
+        {
+            course_id: course_internal_id
+        },
+        function(data) {
+            // TODO: support pagination (already supported by backend)
+            const comments_page = data.results;
+        
+            $.each(comments_page, function(index, comment_data) {
+                var title = comment_data.title;
+                var content = comment_data.content;
+                var post_date = new Date(comment_data.post_date);
+
+                var title_p = $('<p>').text(title);
+                var post_date_p = $('<p class="comment-date">').text(post_date.toLocaleString())
+                var title_div = $('<div class="comment-title">').append(title_p, post_date_p);
+                var content_p = $('<p>').html(content);
+                var content_div = $('<div class="comment-content">').append(content_p);
+
+                comments.append(title_div, content_div);
+            });
+
+            var new_comment_title = $('<input name="title" class="new-comment-title ui-widget ui-corner-all" type="text" placeholder="כותרת" />');
+            var new_comment_content = $('<textarea name="content" rows="5" class="new-comment-content ui-widget ui-corner-all" placeholder="תוכן"></textarea>');
+            var new_comment_button = $('<input type="submit" value="הוסף ביקורת" />').button();
+            var new_comment_form = $('<form>').append(
+				new_comment_title,
+				new_comment_content,
+				new_comment_button
+			).submit(
+				function(event) {
+					const request_title = new_comment_title.val();
+					const request_content = new_comment_content.val();
+					
+					if (!request_title || !request_content) {
+						return false;
+					}
+
+					$.postJSON(
+						"/api/v1/comments/add_comment/",
+						{
+							course_id: course_internal_id,
+							title: request_title,
+							content: request_content,
+						},
+						function(response_data) {
+							const response_title = response_data.title;
+							const response_content = response_data.content;
+							const response_post_date = new Date(response_data.post_date);
+
+							const new_title_p = $('<p>').text(response_title);
+							const new_post_date_p = $('<p class="comment-date">').text(response_post_date.toLocaleString())
+							const new_title_div = $('<div class="comment-title">').append(new_title_p, new_post_date_p);
+
+							const new_content_p = $('<p>').html(response_content);
+							const new_content_div = $('<div class="comment-content">').append(new_content_p);
+
+							new_comment.parent().append(new_title_div, new_content_div);
+							new_comment.remove();
+						},
+					);
+					event.preventDefault();
+					return false;
+				}
+			);
+
+            var new_comment = $('<div class="new-comment">').append(new_comment_form);
+            comments.append(new_comment);
+        },
+    );
+}
+
+// preload images
+$(document).ready(function() {
+    var images = ["images/stars_norank.png", "images/stars1.png", "images/stars2.png", "images/stars3.png", "images/stars4.png", "images/stars5.png",];
+    $.each(images, function(index, image) {
+        $('<img src="' + image + '">');
+    });
+});
+    </script>
+</body>
+</html>
