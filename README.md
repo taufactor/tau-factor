@@ -10,11 +10,6 @@ Tau-Factor is a grades repository website of Tel-Aviv University (non-official) 
 - Frontend using JQuery
 - Existing Database with current grades repository can be provided by contacting <factor.tau@gmail.com>
 
-
-This text you see here is *actually- written in Markdown! To get a feel
-for Markdown's syntax, type some text into the left window and
-watch the results in the right.
-
 ## Installation
 
 Tau-Factor was tested using [Python3.6](https://www.python.org/downloads/release/python-3613/) v1+ to run.
