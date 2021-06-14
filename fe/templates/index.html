@@ -232,7 +232,7 @@ $(function() {
         },
         minLength: 4,
         search: function(e, ui) {
-            $("#searching1").css("background-image", "url('images/ajax-loader.gif')");
+            $("#searching1").css("background-image", "url('{% static 'fe/images/ajax-loader.gif' %}')");
         },
         response: function(e, ui) {
             $("#searching1").css("background-image", "none");
@@ -289,7 +289,7 @@ $(function() {
         },
         minLength: 4,
         search: function(e, ui) {
-            $("#searching2").css("background-image", "url('images/ajax-loader.gif')");
+            $("#searching2").css("background-image", "url('{% static 'fe/images/ajax-loader.gif' %}')");
         },
         response: function(e, ui) {
             $("#searching2").css("background-image", "none");
