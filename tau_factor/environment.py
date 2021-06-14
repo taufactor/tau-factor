@@ -12,6 +12,7 @@ def env_to_bool(name: str, default_value: bool = False) -> bool:
 
 DEBUG = env_to_bool("DEBUG", False)
 
-SITE_URL = env_to_str("SITE_URL", "www.tau-factor.com")
+# TODO: Temporary url - replace when custom domain is set
+SITE_URL = env_to_str("SITE_URL", "tau-factor.herokuapp.com")
 SITE_NAME_EN = env_to_str("SITE_NAME_EN", "Tau-Factor")
 SITE_NAME_HE = env_to_str("SITE_NAME_HE", "Tau פקטור")
