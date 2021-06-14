@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+import django_heroku
+
 from tau_factor import development_environment as env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -155,3 +157,6 @@ API_VERSION = "v1"
 SITE_URL = env.SITE_URL
 SITE_NAME_EN = env.SITE_NAME_EN
 SITE_NAME_HE = env.SITE_NAME_HE
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
