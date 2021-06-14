@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE HTML>
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -5,19 +6,19 @@
     <meta name="description" content="TAU פקטור הוא כלי לריכוז והצגת התפלגויות הציונים של כל הקורסים באוניברסיטת תל-אביב, מכל השנים והמועדים">
     <meta name="keywords" content="TAU-Factor,TAU Factor,TAU פקטור,התפלגויות ציוניום,אוניברסיטת תל אביב,אוניברסיטת תל-אביב">
     <title>TAU פקטור</title>
-    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
 
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
     <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/abapdjeapgjjmoahkhnidippkjhdmkfo">
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-    <script src="js/jquery-ui-1.11.4.js"></script>
-    <link href="css/jquery-ui.css" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'js/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'js/jquery-ui-1.11.4.js' %}"></script>
+    <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet">
 
-    <script src="js/jquery.form.min.js"></script>
+    <script src="{% static 'js/jquery.form.min.js' %}"></script>
 
     <script src="https://code.highcharts.com/6.0/highcharts.js"></script>
     <script src="https://code.highcharts.com/6.0/highcharts-3d.js"></script>

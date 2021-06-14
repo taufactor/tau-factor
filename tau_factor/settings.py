@@ -19,7 +19,6 @@ from tau_factor import development_environment as env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -30,7 +29,6 @@ SECRET_KEY = 'django-insecure-)8#)_+*x9qa+!ejq@&i&t2-#t*y22$nv(k668s__7)ek^+txcd
 DEBUG = env.DEBUG
 
 ALLOWED_HOSTS = [] if DEBUG else [env.SITE_URL]
-
 
 # Application definition
 
@@ -45,6 +43,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "django_filters",
+    "fe",
     "comments",
     "courses",
     "grades",
@@ -98,7 +97,6 @@ TEMPLATES = (
 
 WSGI_APPLICATION = "tau_factor.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -141,12 +139,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = "/fe/"
-STATIC_ROOT = BASE_DIR / "fe"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
