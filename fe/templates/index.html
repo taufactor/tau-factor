@@ -6,19 +6,19 @@
     <meta name="description" content="TAU פקטור הוא כלי לריכוז והצגת התפלגויות הציונים של כל הקורסים באוניברסיטת תל-אביב, מכל השנים והמועדים">
     <meta name="keywords" content="TAU-Factor,TAU Factor,TAU פקטור,התפלגויות ציוניום,אוניברסיטת תל אביב,אוניברסיטת תל-אביב">
     <title>TAU פקטור</title>
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="shortcut icon" href="{% static 'fe/images/favicon.ico' %}" />
 
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'fe/css/styles.css' %}" rel="stylesheet">
 
     <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/abapdjeapgjjmoahkhnidippkjhdmkfo">
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-    <script type="text/javascript" src="{% static 'js/jquery-1.10.2.js' %}"></script>
-    <script src="{% static 'js/jquery-ui-1.11.4.js' %}"></script>
-    <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'fe/js/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'fe/js/jquery-ui-1.11.4.js' %}"></script>
+    <link href="{% static 'fe/css/jquery-ui.css' %}" rel="stylesheet">
 
-    <script src="{% static 'js/jquery.form.min.js' %}"></script>
+    <script src="{% static 'fe/js/jquery.form.min.js' %}"></script>
 
     <script src="https://code.highcharts.com/6.0/highcharts.js"></script>
     <script src="https://code.highcharts.com/6.0/highcharts-3d.js"></script>
@@ -859,10 +859,19 @@ function loadChart(course_code) {
     );
 }
 
+const stars_urls = [
+    "{% static 'fe/images/stars_norank.png' %}",
+    "{% static 'fe/images/stars1.png' %}",
+    "{% static 'fe/images/stars2.png' %}",
+    "{% static 'fe/images/stars3.png' %}",
+    "{% static 'fe/images/stars4.png' %}",
+    "{% static 'fe/images/stars5.png' %}",
+];
+
 function insertRating(div, course_internal_id) {
     const title = $('<h3 class="title">דירוג</h3>');
 
-    var img = $('<img class="moving-stars" src="images/stars_norank.png" />');
+    var img = $(`<img class="moving-stars" src="${stars_urls[0]}" />`);
     const rating_div = $('<div class="rating">').append(img);
 
     div.prepend(title, rating_div);
@@ -879,11 +888,11 @@ function insertRating(div, course_internal_id) {
             var can_vote = rating_data.can_vote;
             var user_rating = -1;
 
-            var rank = "_norank";			
+            var rank = "0";
 			if (rating > 0.0) {
 				rank = Math.round(rating);
 			}
-			img.attr("src", 'images/stars' + rank + '.png');
+			img.attr("src", `${stars_urls[rank]}`);
 
             img.on("mousemove", function(e) {
                 if (can_vote) {
@@ -892,7 +901,7 @@ function insertRating(div, course_internal_id) {
 
                     user_rating = Math.floor(e.offsetX / fifth) + 1;
 
-                    $(this).attr("src", "images/stars" + user_rating + ".png");
+                    $(this).attr("src", `${stars_urls[user_rating]}`);
                 } else {
                     $(this).addClass("disabled-rating");
                 }
@@ -900,7 +909,7 @@ function insertRating(div, course_internal_id) {
 
             img.on("mouseleave", function(e) {
                 if (can_vote) {
-                    $(this).attr("src", 'images/stars' + rank + '.png');
+                    $(this).attr("src", `${stars_urls[rank]}`);
                 }
             });
 
@@ -916,7 +925,7 @@ function insertRating(div, course_internal_id) {
                             can_vote = vote_data.can_vote;
 							if (vote_data.rating > 0.0) {
 								rank = Math.round(vote_data.rating);
-								$(this).attr("src", 'images/stars' + rank + '.png');
+								$(this).attr("src", `${stars_urls[rank]}`);
 							}
                         },
                     );
@@ -1007,8 +1016,7 @@ function insertComments(div, course_internal_id) {
 
 // preload images
 $(document).ready(function() {
-    var images = ["images/stars_norank.png", "images/stars1.png", "images/stars2.png", "images/stars3.png", "images/stars4.png", "images/stars5.png",];
-    $.each(images, function(index, image) {
+    $.each(stars_urls, function(index, image) {
         $('<img src="' + image + '">');
     });
 });

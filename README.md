@@ -20,6 +20,7 @@ Install the dependencies and devDependencies and start the server:
 python3 -m virtualenv venv
 pip3 install -r requirements.txt
 cd tau_factor
+python manage.py collectstatic
 python manage.py runserver
 ```
 
