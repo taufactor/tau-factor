@@ -14,7 +14,7 @@ from pathlib import Path
 
 import django_heroku
 
-from tau_factor import development_environment as env
+from tau_factor import environment as env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)8#)_+*x9qa+!ejq@&i&t2-#t*y22$nv(k668s__7)ek^+txcd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+RUNNING_ENVIRONMENT = env.RUNNING_ENVIRONMENT
 DEBUG = env.DEBUG
 
 ALLOWED_HOSTS = [] if DEBUG else [env.SITE_URL]
@@ -96,6 +97,17 @@ TEMPLATES = (
 )
 
 WSGI_APPLICATION = "tau_factor.wsgi.application"
+
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+if RUNNING_ENVIRONMENT == "local":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
