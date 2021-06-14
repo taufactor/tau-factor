@@ -1,6 +1,5 @@
 import uuid
 
-from django.core import validators as django_validators
 from django.db import models as django_db_models
 
 from courses import models as courses_models
