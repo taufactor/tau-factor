@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "fe",
     "comments",
     "courses",
+    "extension",
     "grades",
     "ratings",
 ]

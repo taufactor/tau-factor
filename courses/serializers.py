@@ -4,7 +4,7 @@ from rest_framework import serializers
 from courses import models as courses_models
 
 
-class CourseCommonName(serializers.ModelSerializer):
+class CourseCommonNameSerializer(serializers.ModelSerializer):
     class Meta:
         model = courses_models.CourseCommonName
         fields = (
@@ -64,7 +64,7 @@ class CourseInstanceSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    most_common_names = CourseCommonName(many=True)
+    most_common_names = CourseCommonNameSerializer(many=True)
     instances = CourseInstanceSerializer(many=True)
 
     class Meta:

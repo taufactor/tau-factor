@@ -1,8 +1,10 @@
 from django import shortcuts as django_shortcuts
+from django.db import models as django_db_models
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework import decorators as drf_decorators
+from rest_framework.request import Request
 from rest_framework.response import Response
 
 
@@ -19,7 +21,7 @@ class CoursesView(viewsets.ReadOnlyModelViewSet):
     serializer_class = courses_serializers.CourseSerializer
     filterset_class = courses_filters.CoursesFilters
 
-    def get_queryset(self):
+    def get_queryset(self) -> django_db_models.QuerySet:
         return courses_models.Course.objects.all().prefetch_related(
             "__".join((
                 courses_models.Course.COURSE_INSTANCES_RELATED_FIELD_NAME,
@@ -37,11 +39,11 @@ class CoursesView(viewsets.ReadOnlyModelViewSet):
         )
 
     @swagger_auto_schema(operation_summary="List Courses", operation_description="List courses.")
-    def list(self, request, *args, **kwargs) -> Response:
+    def list(self, request: Request, *args, **kwargs) -> Response:
         return super(CoursesView, self).list(request)
 
     @swagger_auto_schema(operation_summary="Retrieve Course", operation_description="Retrieve a course.")
-    def retrieve(self, request, *args, **kwargs) -> Response:
+    def retrieve(self, request: Request, *args, **kwargs) -> Response:
         return super(CoursesView, self).retrieve(request)
 
 
@@ -60,7 +62,7 @@ class CoursesInstanceView(viewsets.GenericViewSet):
             status.HTTP_201_CREATED: courses_serializers.CourseInstanceSerializer,
         },
     )
-    def create_course(self, request, *args, **kwargs):
+    def create_course(self, request: Request, *args, **kwargs) -> Response:
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         validated_data = serializer.validated_data
@@ -102,7 +104,7 @@ class CoursesGroupView(viewsets.GenericViewSet):
             status.HTTP_201_CREATED: courses_serializers.CourseGroupSerializer,
         },
     )
-    def create_course_group(self, request, *args, **kwargs):
+    def create_course_group(self, request: Request, *args, **kwargs) -> Response:
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         validated_data = serializer.validated_data

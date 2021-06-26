@@ -30,6 +30,7 @@ urlpatterns = [
     urls.path("", urls.include("fe.urls")),
     urls.path(f"api/{settings.API_VERSION}/", urls.include("comments.urls")),
     urls.path(f"api/{settings.API_VERSION}/", urls.include("courses.urls")),
+    urls.path(f"api/{settings.API_VERSION}/", urls.include("extension.urls")),
     urls.path(f"api/{settings.API_VERSION}/", urls.include("grades.urls")),
     urls.path(f"api/{settings.API_VERSION}/", urls.include("ratings.urls")),
 ]
