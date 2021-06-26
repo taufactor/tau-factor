@@ -27,7 +27,7 @@ class ExtensionView(viewsets.ViewSet):
         random.shuffle(vctb)
         response_serializer = extension_serializers.GetExtensionFieldsSerializer(
             instance={
-                "vctb": vctb,
+                "vctb": vctb[:3],
                 "vctl": "קורס",
                 "vctln": "שם",
             },
