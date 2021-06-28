@@ -594,7 +594,8 @@ function add_series(series_data, chart) {
             grades[index] = undefined;
             for (const grade_range of series_data.grades) {
                 if (lowest_grade === grade_range.lowest_grade && highest_grade === grade_range.highest_grade) {
-                    grades[index] = grade_range.students_in_range;
+                    console.log(JSON.stringify(grade_range));
+                    grades[index] = grade_range.students_percent_in_range;
                     break;
                 }
             }

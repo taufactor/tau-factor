@@ -55,6 +55,8 @@ class ExamStatistics(django_db_models.Model):
 
 
 class ExamGradeRange(django_db_models.Model):
+    STUDENTS_PERCENT_IN_RANGE_PROPERTY_NAME = "students_percent_in_range"
+
     exam_grade_range_id = django_db_models.UUIDField(primary_key=True, default=uuid.uuid4)
 
     exam = django_db_models.ForeignKey(
@@ -66,6 +68,10 @@ class ExamGradeRange(django_db_models.Model):
     lowest_grade = django_db_models.PositiveSmallIntegerField(null=False)
     highest_grade = django_db_models.PositiveSmallIntegerField(null=False)
     students_in_range = django_db_models.PositiveSmallIntegerField(null=False)
+
+    @property
+    def students_percent_in_range(self):
+        return self.students_in_range / self.exam.students_count * 100
 
     class Meta:
         unique_together = ("exam", "lowest_grade")
