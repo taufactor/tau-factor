@@ -73,7 +73,7 @@ class CourseInstanceService(object):
     ) -> courses_models.CourseInstance:
         course = CourseService.get_or_create(course_code=params.course_code)
 
-        course_instance, _ = cls.model.objects.get_or_create(
+        course_instance, created = cls.model.objects.get_or_create(
             defaults={},
             **{
                 courses_models.CourseInstance.course.field.name: course,
@@ -81,6 +81,12 @@ class CourseInstanceService(object):
                 courses_models.CourseInstance.semester.field.name: params.semester,
             },
         )
+
+        if created is True:
+            # If the course instance is actually created, then we do not pass through
+            # the manager's get_queryset, and annotations are not added.
+            # We can be sure that there are no groups currently connected to this course instance.
+            course_instance.num_groups = 0
 
         course_instance_names = tuple(
             courses_models.CourseInstanceName(**{
