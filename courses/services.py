@@ -105,13 +105,19 @@ class CourseGroupService(object):
             cls,
             params: courses_non_persistent_models.CreateCourseGroupParams,
     ) -> courses_models.CourseGroup:
-        course_group, _ = cls.model.objects.get_or_create(
+        course_group, created = cls.model.objects.get_or_create(
             defaults={},
             **{
                 courses_models.CourseGroup.course_instance.field.name: params.course_instance,
                 courses_models.CourseGroup.course_group_name.field.name: params.group_name,
             },
         )
+
+        if created is True:
+            # If the course group is actually created, then we do not pass through
+            # the manager's get_queryset, and annotations are not added.
+            # We can be sure that there are no exams currently connected to this course group.
+            course_group.num_exams = 0
 
         course_group_teachers = tuple(
             courses_models.CourseGroupTeacher(**{
