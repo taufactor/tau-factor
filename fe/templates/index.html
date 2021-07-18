@@ -594,7 +594,6 @@ function add_series(series_data, chart) {
             grades[index] = undefined;
             for (const grade_range of series_data.grades) {
                 if (lowest_grade === grade_range.lowest_grade && highest_grade === grade_range.highest_grade) {
-                    console.log(JSON.stringify(grade_range));
                     grades[index] = grade_range.students_percent_in_range;
                     break;
                 }
@@ -779,7 +778,7 @@ function loadChart(course_code) {
                 const semester = instance_data.semester;
                 const hebrew_semester = semester_text[semester] || "";
 
-                const year_link_url = "http://www2.tau.ac.il/yedion/syllabus.asp?course=" + course_code + "&year=" + western_year;
+                const year_link_url = "http://www2.tau.ac.il/yedion/syllabus.asp?course=" + course_code.replace('-',''); + "&year=" + western_year;
 
                 const year_label = $("<p>").html('<a target="_blank" href="' + year_link_url + '">' + hebrew_year + '</a>');
                 const semester_label = $("<p>").text(hebrew_semester);
