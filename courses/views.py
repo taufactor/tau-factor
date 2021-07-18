@@ -23,19 +23,34 @@ class CoursesView(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self) -> django_db_models.QuerySet:
         return courses_models.Course.objects.all().prefetch_related(
-            "__".join((
-                courses_models.Course.COURSE_INSTANCES_RELATED_FIELD_NAME,
-                courses_models.CourseInstance.COURSE_NAMES_RELATED_FIELD_NAME,
-            )),
-            "__".join((
-                courses_models.Course.COURSE_INSTANCES_RELATED_FIELD_NAME,
-                courses_models.CourseInstance.COURSE_GROUPS_RELATED_FIELD_NAME,
-            )),
-            "__".join((
-                courses_models.Course.COURSE_INSTANCES_RELATED_FIELD_NAME,
-                courses_models.CourseInstance.COURSE_GROUPS_RELATED_FIELD_NAME,
-                courses_models.CourseGroup.TEACHERS_RELATED_FIELD_NAME,
-            )),
+            django_db_models.Prefetch(
+                lookup="__".join((
+                    courses_models.Course.COURSE_INSTANCES_RELATED_FIELD_NAME,
+                    courses_models.CourseInstance.COURSE_NAMES_RELATED_FIELD_NAME,
+                )),
+                queryset=courses_models.CourseInstanceName.objects.order_by(
+                    courses_models.CourseInstanceName.course_name.field_name,
+                )
+            ),
+            django_db_models.Prefetch(
+                lookup="__".join((
+                    courses_models.Course.COURSE_INSTANCES_RELATED_FIELD_NAME,
+                    courses_models.CourseInstance.COURSE_GROUPS_RELATED_FIELD_NAME,
+                )),
+                queryset=courses_models.CourseGroup.objects.order_by(
+                    courses_models.CourseGroup.course_group_name.field_name,
+                )
+            ),
+            django_db_models.Prefetch(
+                lookup="__".join((
+                    courses_models.Course.COURSE_INSTANCES_RELATED_FIELD_NAME,
+                    courses_models.CourseInstance.COURSE_GROUPS_RELATED_FIELD_NAME,
+                    courses_models.CourseGroup.TEACHERS_RELATED_FIELD_NAME,
+                )),
+                queryset=courses_models.CourseGroupTeacher.objects.order_by(
+                    courses_models.CourseGroupTeacher.teacher_name.field_name,
+                )
+            ),
         )
 
     @swagger_auto_schema(operation_summary="List Courses", operation_description="List courses.")
