@@ -74,7 +74,7 @@
         </ol>
         <div id="homepage" style="line-height: 27pt;">
             <p><span class="tau">TAU</span> פקטור הוא כלי לריכוז והצגת התפלגויות הציונים של כל הקורסים באוניברסיטת תל-אביב, מכל השנים והמועדים (כרגע עד תשע"ד).<br />
-הבידינג התחיל? מתלבט לאיזה קורס כדאי להירשם? מי מפנק בציונים ומי מכשיל את כל התלמידים? עכשיו אפשר לגלות.<br />
+הבידינג התחיל? מתלבט/ת לאיזה קורס כדאי להירשם? מי מפנק/ת בציונים ומי מכשיל/ה את כל התלמידים? עכשיו אפשר לגלות.<br />
 <span class="tau">TAU</span> פקטור מרכז את התפלגויות הציונים בקורסים, ומאפשר לכולם גישה אליהם.</p>
             <p>כדי לקבל את הנתונים כל מה שצריך לעשות זה להתחיל להקליד באחת התיבות שבראש העמוד. המערכת תציג אופציות מתאימות לחיפוש תוך כדי ההקלדה (החל מ-4 תווים).</p>
             <p>לאחר הקלקה על אחת האופציות, תופיע לשונית חדשה עם נתוני הקורס המבוקש. על מנת לעבור ללשונית החדשה יש למקם את העכבר עליה.</p>
@@ -445,8 +445,8 @@ function create_empty_chart(course_number, course_name, container) {
             width: 940,
             options3d: {
                 enabled: true,
-                alpha: 15,
-                beta: 10,
+                alpha: 0,
+                beta: 0,
                 depth: 50
             }
         },
@@ -765,7 +765,6 @@ function loadChart(course_code) {
             add_tab(course_name, course_code);
 
             insertRating(course_div, course_internal_id);
-            insertComments(course_div, course_internal_id);
 
             $.each(course_data.instances, function(index, instance_data) {
                 if (Math.max(...instance_data.groups.map(group_data => group_data.num_exams)) <= 0) {
@@ -936,84 +935,6 @@ function insertRating(div, course_internal_id) {
     );
 }
 
-
-function insertComments(div, course_internal_id) {
-    div.append('<h3 class="title">ביקורות על הקורס</h3>');
-    var comments = $('<div class="comments">');
-    div.append(comments);
-
-    $.get(
-        '/api/v1/comments/',
-        {
-            course_id: course_internal_id
-        },
-        function(data) {
-            // TODO: support pagination (already supported by backend)
-            const comments_page = data.results;
-        
-            $.each(comments_page, function(index, comment_data) {
-                var title = comment_data.title;
-                var content = comment_data.content;
-                var post_date = new Date(comment_data.post_date);
-
-                var title_p = $('<p>').text(title);
-                var post_date_p = $('<p class="comment-date">').text(post_date.toLocaleString())
-                var title_div = $('<div class="comment-title">').append(title_p, post_date_p);
-                var content_p = $('<p>').html(content);
-                var content_div = $('<div class="comment-content">').append(content_p);
-
-                comments.append(title_div, content_div);
-            });
-
-            var new_comment_title = $('<input name="title" class="new-comment-title ui-widget ui-corner-all" type="text" placeholder="כותרת" />');
-            var new_comment_content = $('<textarea name="content" rows="5" class="new-comment-content ui-widget ui-corner-all" placeholder="תוכן"></textarea>');
-            var new_comment_button = $('<input type="submit" value="הוסף ביקורת" />').button();
-            var new_comment_form = $('<form>').append(
-				new_comment_title,
-				new_comment_content,
-				new_comment_button
-			).submit(
-				function(event) {
-					const request_title = new_comment_title.val();
-					const request_content = new_comment_content.val();
-					
-					if (!request_title || !request_content) {
-						return false;
-					}
-
-					$.postJSON(
-						"/api/v1/comments/add_comment/",
-						{
-							course_id: course_internal_id,
-							title: request_title,
-							content: request_content,
-						},
-						function(response_data) {
-							const response_title = response_data.title;
-							const response_content = response_data.content;
-							const response_post_date = new Date(response_data.post_date);
-
-							const new_title_p = $('<p>').text(response_title);
-							const new_post_date_p = $('<p class="comment-date">').text(response_post_date.toLocaleString())
-							const new_title_div = $('<div class="comment-title">').append(new_title_p, new_post_date_p);
-
-							const new_content_p = $('<p>').html(response_content);
-							const new_content_div = $('<div class="comment-content">').append(new_content_p);
-
-							new_comment.parent().append(new_title_div, new_content_div);
-							new_comment.remove();
-						},
-					);
-					event.preventDefault();
-					return false;
-				}
-			);
-
-            var new_comment = $('<div class="new-comment">').append(new_comment_form);
-            comments.append(new_comment);
-        },
-    );
-}
 
 // preload images
 $(document).ready(function() {
