@@ -1,3 +1,5 @@
+import copy
+
 from django.db import models as django_db_models
 from django.db import transaction as django_db_transaction
 
@@ -101,6 +103,20 @@ class CourseInstanceService(object):
 
         return course_instance
 
+    @classmethod
+    def get_group_all(
+            cls,
+            course_instance: courses_models.CourseInstance,
+            select_for_update: bool = True,
+    ) -> courses_models.CourseGroup:
+        objects = courses_models.CourseGroup.objects
+        if select_for_update:
+            objects = objects.select_for_update()
+        return objects.get(**{
+            courses_models.CourseGroup.course_instance.field.name: course_instance,
+            courses_models.CourseGroup.course_group_name.field.name: courses_defines.COURSE_GROUP_ALL_NAME,
+        })
+
 
 class CourseGroupService(object):
     model = courses_models.CourseGroup
@@ -111,6 +127,10 @@ class CourseGroupService(object):
             cls,
             params: courses_non_persistent_models.CreateCourseGroupParams,
     ) -> courses_models.CourseGroup:
+        # Create a group that represents all the groups of the course instance together
+        if params.group_name != courses_defines.COURSE_GROUP_ALL_NAME:
+            cls.create_all_course_group_if_needed(params)
+
         course_group, created = cls.model.objects.get_or_create(
             defaults={},
             **{
@@ -135,3 +155,12 @@ class CourseGroupService(object):
         courses_models.CourseGroupTeacher.objects.bulk_create(course_group_teachers, ignore_conflicts=True)
 
         return course_group
+
+    @classmethod
+    def create_all_course_group_if_needed(
+            cls,
+            params: courses_non_persistent_models.CreateCourseGroupParams,
+    ) -> courses_models.CourseGroup:
+        all_group_params = copy.deepcopy(params)
+        all_group_params.group_name = courses_defines.COURSE_GROUP_ALL_NAME
+        return cls.get_or_create(all_group_params)
