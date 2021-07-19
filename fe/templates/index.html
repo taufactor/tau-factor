@@ -108,10 +108,10 @@ $.postJSON = function(url, data, callback) {
         data: JSON.stringify(data),
         dataType: "json",
         success: callback,
-		error: function(response, statusText, xhr, $form) {
-			console.log(response.responseText);
+        error: function(response, statusText, xhr, $form) {
+            console.log(response.responseText);
         },
-	});
+    });
 };
 
 $(document).ready(function() {
@@ -219,10 +219,10 @@ $(function() {
                 function(data) {
                     response(data.results.map(
                         function (course) {
-							const most_common_names = course.most_common_names.map(common_name => common_name.course_name).join(" - ");
+                            const most_common_names = course.most_common_names.map(common_name => common_name.course_name).join(" - ");
                             return {
                                 course_code: course.course_code,
-								most_common_names: most_common_names,
+                                most_common_names: most_common_names,
                                 value: course.course_code,
                             };
                         }
@@ -246,7 +246,7 @@ $(function() {
                 me.html( me.text().replace(acData.term, styledTerm) );
             });
         },
-		focus: function( event, ui ) {
+        focus: function( event, ui ) {
             $(".ui-autocomplete > li").attr("title", ui.item.most_common_names);
         },
         select: function( event, ui ) {
@@ -276,10 +276,10 @@ $(function() {
                 function(data) {
                     response(data.results.map(
                         function (course) {
-						    const most_common_names = course.most_common_names.map(common_name => common_name.course_name).join(" - ");
+                            const most_common_names = course.most_common_names.map(common_name => common_name.course_name).join(" - ");
                             return {
                                 course_code: course.course_code,
-								most_common_names: most_common_names,
+                                most_common_names: most_common_names,
                                 value: most_common_names,
                             };
                         }
@@ -303,7 +303,7 @@ $(function() {
                 me.html( me.text().replace(acData.term, styledTerm) );
             });
         },
-		focus: function( event, ui ) {
+        focus: function( event, ui ) {
             $(".ui-autocomplete > li").attr("title", ui.item.course_code);
         },
         select: function( event, ui ) {
@@ -486,25 +486,27 @@ function create_empty_chart(course_number, course_name, container) {
                     return this.value + '%';
                 }
             },
-            ceiling: 100/*,
-            max: 100*/
+            ceiling: 100,
         },
         legend: {
             useHTML: true,
             rtl: true,
-            symbolRadius: 2,
-            symbolPadding: 5,
+            padding: 20,
+            symbolRadius: 8,
+            symbolPadding: 0,
             layout: 'vertical',
             align: 'right',
             verticalAlign: 'top',
             x: -10,
-            y: 45
+            y: 45,
         },
         tooltip: {
             useHTML: true,
             enabled: true,
             formatter: function () {
-                return '<p style="text-align: center; margin: 0px;">' + this.series.name + '<br /><b>' + this.y.toFixed(2) + '%</b></p>';
+                return '<p style="text-align: center; margin: 0px; direction: rtl;">' + this.series.name + '<br />' + 
+                '<b>' + this.y.toFixed(2) + '%<br>' +
+                '(' + this.point.students_in_range + ' מתוך ' + this.point.students_count + ' תלמידים)</b></p>';
             }
         }
     });
@@ -548,7 +550,13 @@ function create_empty_chart(course_number, course_name, container) {
 var hebrew_years = {"2010": 'תשע"א', "2011": 'תשע"ב', "2012": 'תשע"ג', "2013": 'תשע"ד', "2014": 'תשע"ה', "2015": 'תשע"ו', "2016": 'תשע"ז', "2017": 'תשע"ח', "2018": 'תשע"ט', "2019": 'תש"פ', "2020": 'תשפ"א', "2021": 'תשפ"ב', "2022": 'תשפ"ג', "2023": 'תשפ"ד', "2024": 'תשפ"ה', "2025": 'תשפ"ו', "2026": 'תשפ"ז', "2027": 'תשפ"ח', "2028": 'תשפ"ט', "2029": 'תש"צ', "2030": 'תשצ"א', "2031": 'תשצ"ב'};
 
 function create_series_name(data) {
-    return hebrew_years[data.year] + "/" + semester_text[data.semester][0] + " - קב': " + group_printable(data.group_name) + " - מועד: " + moed_number_to_name(data.moed);
+    var series_name = hebrew_years[data.year] + "/" + semester_text[data.semester][0] + " | " + group_printable(data.group_name) + " | מועד " + moed_number_to_name(data.moed);
+    
+    const mean = data?.exam?.statistics?.mean;
+    if (mean > 0 && mean <= 100) {
+        series_name = series_name + " | ממוצע " + mean;
+    }
+    return series_name;
 }
 
 
@@ -592,9 +600,13 @@ function add_series(series_data, chart) {
             const highest_grade = parseInt(split_label[1]);
 
             grades[index] = undefined;
-            for (const grade_range of series_data.grades) {
+            for (const grade_range of series_data.exam.grades) {
                 if (lowest_grade === grade_range.lowest_grade && highest_grade === grade_range.highest_grade) {
-                    grades[index] = grade_range.students_percent_in_range;
+                    grades[index] = {
+                        y: grade_range.students_percent_in_range,
+                        students_in_range: grade_range.students_in_range,
+                        students_count: series_data.exam.students_count,
+                    };
                     break;
                 }
             }
@@ -653,7 +665,7 @@ function minimize_data(course_div, mask) {
                     semester: enabled_group.semester,
                     moed: exam.moed,
                     group_name: enabled_group.group,
-                    grades: exam.grades,
+                    exam: exam,
                 });
             }
         }
@@ -881,17 +893,17 @@ function insertRating(div, course_internal_id) {
             course_id: course_internal_id
         },
         function(data) {
-			const rating_data = data.results[0];
+            const rating_data = data.results[0];
             const rating = rating_data.rating;
         
             var can_vote = rating_data.can_vote;
             var user_rating = -1;
 
             var rank = "0";
-			if (rating > 0.0) {
-				rank = Math.round(rating);
-			}
-			img.attr("src", `${stars_urls[rank]}`);
+            if (rating > 0.0) {
+                rank = Math.round(rating);
+            }
+            img.attr("src", `${stars_urls[rank]}`);
 
             img.on("mousemove", function(e) {
                 if (can_vote) {
@@ -922,10 +934,10 @@ function insertRating(div, course_internal_id) {
                         },
                         function(vote_data) {
                             can_vote = vote_data.can_vote;
-							if (vote_data.rating > 0.0) {
-								rank = Math.round(vote_data.rating);
-								$(this).attr("src", `${stars_urls[rank]}`);
-							}
+                            if (vote_data.rating > 0.0) {
+                                rank = Math.round(vote_data.rating);
+                                $(this).attr("src", `${stars_urls[rank]}`);
+                            }
                         },
                     );
                 }
