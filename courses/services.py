@@ -105,12 +105,8 @@ class CourseInstanceService(object):
     def get_group_all(
             cls,
             course_instance: courses_models.CourseInstance,
-            select_for_update: bool = True,
     ) -> courses_models.CourseGroup:
-        objects = courses_models.CourseGroup.objects
-        if select_for_update:
-            objects = objects.select_for_update()
-        return objects.get(**{
+        return courses_models.CourseGroup.objects.get(**{
             courses_models.CourseGroup.course_instance.field.name: course_instance,
             courses_models.CourseGroup.course_group_name.field.name: courses_defines.COURSE_GROUP_ALL_NAME,
         })
