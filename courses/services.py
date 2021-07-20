@@ -1,5 +1,3 @@
-import copy
-
 from django.db import models as django_db_models
 from django.db import transaction as django_db_transaction
 
@@ -161,6 +159,5 @@ class CourseGroupService(object):
             cls,
             params: courses_non_persistent_models.CreateCourseGroupParams,
     ) -> courses_models.CourseGroup:
-        all_group_params = copy.deepcopy(params)
-        all_group_params.group_name = courses_defines.COURSE_GROUP_ALL_NAME
+        all_group_params = params._replace(group_name=courses_defines.COURSE_GROUP_ALL_NAME)
         return cls.get_or_create(all_group_params)
