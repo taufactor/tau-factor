@@ -16,11 +16,11 @@ class Course(django_db_models.Model):
 
     course_id = django_db_models.UUIDField(primary_key=True, default=uuid.uuid4)
 
-    # Unique together
     course_code = django_db_models.CharField(
         max_length=courses_defines.COURSE_CODE_LENGTH,
         null=False,
         db_index=True,
+        unique=True,
         validators=(
             django_validators.RegexValidator(
                 regex=re.compile(r"^\d{4}-\d{4}$"),
