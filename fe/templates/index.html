@@ -554,7 +554,7 @@ function create_series_name(data) {
     
     const mean = data?.exam?.statistics?.mean;
     if (mean > 0 && mean <= 100) {
-        series_name = series_name + " | ממוצע " + mean;
+        series_name = series_name + " | ממוצע " + parseFloat(mean).toFixed(2);
     }
     return series_name;
 }
