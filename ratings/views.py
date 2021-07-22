@@ -27,6 +27,10 @@ class CourseRatingsView(viewsets.ReadOnlyModelViewSet):
     def retrieve(self, request, *args, **kwargs) -> Response:
         return super(CourseRatingsView, self).retrieve(request)
 
+
+class CourseRatingsPrivateView(viewsets.GenericViewSet):
+    serializer_class = ratings_serializers.CourseRatingSerializer
+
     @drf_decorators.action(
         detail=False,
         methods=["POST"],

@@ -28,6 +28,10 @@ class ExamView(viewsets.ReadOnlyModelViewSet):
     def retrieve(self, request, *args, **kwargs) -> Response:
         return super(ExamView, self).retrieve(request)
 
+
+class ExamPrivateView(viewsets.GenericViewSet):
+    serializer_class = grades_serializers.ExamSerializer
+
     @drf_decorators.action(
         detail=False,
         methods=["POST"],

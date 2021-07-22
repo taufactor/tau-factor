@@ -27,6 +27,10 @@ class CourseCommentsView(viewsets.ReadOnlyModelViewSet):
     def retrieve(self, request, *args, **kwargs) -> Response:
         return super(CourseCommentsView, self).retrieve(request)
 
+
+class CourseCommentsPrivateView(viewsets.GenericViewSet):
+    serializer_class = comments_serializers.CourseCommentSerializer
+
     @drf_decorators.action(
         detail=False,
         methods=["POST"],
