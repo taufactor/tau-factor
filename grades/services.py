@@ -3,13 +3,13 @@ import functools
 
 from django.db import models as django_db_models
 from django.db import transaction as django_db_transaction
-from django_pglocks import advisory_lock
 
 from courses import models as courses_models
 from courses import services as courses_services
 from grades import defines as grades_defines
 from grades import models as grades_models
 from grades import non_persistent_models as grades_non_persistent_models
+from utils import locks_utils
 
 
 class ExamService(object):
@@ -63,7 +63,7 @@ class ExamService(object):
     ) -> None:
         with django_db_transaction.atomic():
             lock_id = grades_defines.RECALCULATE_GROUP_ALL_EXAMS_LOCK.format(course_instance.course_instance_id)
-            with advisory_lock(lock_id):
+            with locks_utils.advisory_lock(lock_id):
                 course_group_all = courses_services.CourseInstanceService.get_group_all(course_instance)
 
                 # Remove old exams for the "all group" of this course instance
