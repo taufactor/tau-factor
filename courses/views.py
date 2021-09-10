@@ -1,3 +1,4 @@
+from django import http as django_http
 from django import shortcuts as django_shortcuts
 from django.db import models as django_db_models
 from drf_yasg.utils import swagger_auto_schema
@@ -15,6 +16,8 @@ from courses import non_persistent_models as courses_non_persistent_models
 from courses import request_serializers as courses_request_serializers
 from courses import serializers as courses_serializers
 from courses import services as courses_services
+from grades import services as grades_services
+from grades import serializers as grades_serializers
 
 
 class CoursesView(viewsets.ReadOnlyModelViewSet):
@@ -60,6 +63,22 @@ class CoursesView(viewsets.ReadOnlyModelViewSet):
     @swagger_auto_schema(operation_summary="Retrieve Course", operation_description="Retrieve a course.")
     def retrieve(self, request: Request, *args, **kwargs) -> Response:
         return super(CoursesView, self).retrieve(request)
+
+    @drf_decorators.action(
+        detail=True,
+        methods=["GET"],
+        serializer_class=grades_serializers.ExamSerializer,
+    )
+    @swagger_auto_schema(
+        operation_summary="Get Latest Exam",
+        operation_description="Get most recent exam of the course.",
+    )
+    def latest_exam(self, request, *args, **kwargs) -> Response:
+        course = self.get_object()
+        exam = grades_services.ExamService.get_latest_exam_for_course(course=course)
+        if exam is None:
+            raise django_http.Http404
+        return Response(grades_serializers.ExamSerializer(exam).data)
 
 
 class CoursesInstanceView(viewsets.GenericViewSet):

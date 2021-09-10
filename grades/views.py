@@ -19,6 +19,7 @@ class ExamView(viewsets.ReadOnlyModelViewSet):
     queryset = grades_models.Exam.objects.all()
     serializer_class = grades_serializers.ExamSerializer
     filterset_class = grades_filters.ExamFilters
+    ordering_fields = ["moed", 'email']
 
     @swagger_auto_schema(operation_summary="List Exams", operation_description="List grade distribution of exams.")
     def list(self, request, *args, **kwargs) -> Response:

@@ -1,9 +1,11 @@
 import collections
 import functools
+import typing
 
 from django.db import models as django_db_models
 from django.db import transaction as django_db_transaction
 
+from courses import defines as courses_defines
 from courses import models as courses_models
 from courses import services as courses_services
 from grades import defines as grades_defines
@@ -55,6 +57,39 @@ class ExamService(object):
 
         cls.recalculate_exam_for_course_group_all(params.course_group.course_instance)
         return exam
+
+    @classmethod
+    def get_latest_exam_for_course(
+            cls,
+            course: courses_models.Course,
+            course_group_name: str = courses_defines.COURSE_GROUP_ALL_NAME,
+    ) -> typing.Optional[grades_models.Exam]:
+        year_ordering = "__".join((
+            grades_models.Exam.course_group.field.name,
+            courses_models.CourseGroup.course_instance.field.name,
+            courses_models.CourseInstance.year.field.name,
+        ))
+
+        semester_ordering = "__".join((
+            grades_models.Exam.course_group.field.name,
+            courses_models.CourseGroup.course_instance.field.name,
+            courses_models.CourseInstance.semester.field.name,
+        ))
+
+        return cls.model.objects.filter(**{
+            "__".join((
+                grades_models.Exam.course_group.field.name,
+                courses_models.CourseGroup.course_instance.field.name,
+                courses_models.CourseInstance.course.field.name,
+            )): course,
+            "__".join((
+                grades_models.Exam.course_group.field.name,
+                courses_models.CourseGroup.course_group_name.field.name,
+            )): course_group_name,
+        }).order_by(
+            F"-{year_ordering}",
+            F"-{semester_ordering}"
+        ).first()
 
     @classmethod
     def recalculate_exam_for_course_group_all(

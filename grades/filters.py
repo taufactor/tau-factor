@@ -37,3 +37,5 @@ class ExamFilters(django_filters.FilterSet):
             courses_models.CourseGroup.course_instance_id.field.attname,
         )),
     )
+
+    moed = django_filters.NumberFilter()
