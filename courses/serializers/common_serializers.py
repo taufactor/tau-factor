@@ -30,10 +30,11 @@ class CourseGroupTeacherSerializer(serializers.ModelSerializer):
         )
 
 
-class CourseGroupSerializer(serializers.ModelSerializer):
+# Base serializers for Downstream/Upstream serializers
+
+class BaseCourseGroupSerializer(serializers.ModelSerializer):
     course_group_id = fields.UUIDField(required=True)
     teachers = CourseGroupTeacherSerializer(many=True, required=True)
-    num_exams = fields.IntegerField(required=True)
 
     class Meta:
         model = courses_models.CourseGroup
@@ -41,15 +42,11 @@ class CourseGroupSerializer(serializers.ModelSerializer):
             courses_models.CourseGroup.course_group_id.field.name,
             courses_models.CourseGroup.course_group_name.field.name,
             courses_models.CourseGroup.TEACHERS_RELATED_FIELD_NAME,
-            courses_models.CourseGroup.NUM_EXAMS_ANNOTATION,
         )
 
 
-class CourseInstanceSerializer(serializers.ModelSerializer):
+class BaseCourseInstanceSerializer(serializers.ModelSerializer):
     names = CourseInstanceNameSerializer(many=True)
-
-    groups = CourseGroupSerializer(many=True)
-    num_groups = fields.IntegerField()
 
     class Meta:
         model = courses_models.CourseInstance
@@ -58,20 +55,16 @@ class CourseInstanceSerializer(serializers.ModelSerializer):
             courses_models.CourseInstance.year.field.name,
             courses_models.CourseInstance.semester.field.name,
             courses_models.CourseInstance.COURSE_NAMES_RELATED_FIELD_NAME,
-            courses_models.CourseInstance.COURSE_GROUPS_RELATED_FIELD_NAME,
-            courses_models.CourseInstance.NUM_GROUPS_ANNOTATION,
         )
 
 
-class CourseSerializer(serializers.ModelSerializer):
+class BaseCourseSerializer(serializers.ModelSerializer):
     most_common_names = CourseCommonNameSerializer(many=True)
-    instances = CourseInstanceSerializer(many=True)
 
     class Meta:
         model = courses_models.Course
         fields = (
             courses_models.Course.course_id.field.name,
             courses_models.Course.course_code.field.name,
-            courses_models.Course.COURSE_INSTANCES_RELATED_FIELD_NAME,
             courses_models.Course.MOST_COMMON_COURSE_NAMES_FIELD_NAME,
         )

@@ -1,6 +1,7 @@
 from rest_framework import fields
 from rest_framework import serializers
 
+from courses.serializers import upstream_serializers as courses_upstream_serializers
 from grades import models as grades_models
 
 
@@ -31,14 +32,14 @@ class ExamStatisticsSerializer(serializers.ModelSerializer):
 
 
 class ExamSerializer(serializers.ModelSerializer):
-    course_group_id = fields.UUIDField(),
+    course_group = courses_upstream_serializers.CourseGroupUpstreamSerializer()
     statistics = ExamStatisticsSerializer()
     grades = ExamGradeRangeSerializer(many=True)
 
     class Meta:
         model = grades_models.Exam
         fields = (
-            grades_models.Exam.course_group_id.field.attname,
+            grades_models.Exam.course_group.field.name,
             grades_models.Exam.moed.field.name,
             grades_models.Exam.students_count.field.name,
             grades_models.Exam.failures_count.field.name,

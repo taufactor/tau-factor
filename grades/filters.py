@@ -38,4 +38,11 @@ class ExamFilters(django_filters.FilterSet):
         )),
     )
 
+    course_group_name = django_filters.CharFilter(
+        field_name="__".join((
+            grades_models.Exam.course_group.field.name,
+            courses_models.CourseGroup.course_group_name.field.name,
+        )),
+    )
+
     moed = django_filters.NumberFilter()

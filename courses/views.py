@@ -13,15 +13,15 @@ from courses import exceptions as courses_exceptions
 from courses import filters as courses_filters
 from courses import models as courses_models
 from courses import non_persistent_models as courses_non_persistent_models
-from courses import request_serializers as courses_request_serializers
-from courses import serializers as courses_serializers
+from courses.serializers import request_serializers as courses_request_serializers
+from courses.serializers import downstream_serializers as courses_downstream_serializers
 from courses import services as courses_services
 from grades import services as grades_services
 from grades import serializers as grades_serializers
 
 
 class CoursesView(viewsets.ReadOnlyModelViewSet):
-    serializer_class = courses_serializers.CourseSerializer
+    serializer_class = courses_downstream_serializers.CourseDownstreamSerializer
     filterset_class = courses_filters.CoursesFilters
 
     def get_queryset(self) -> django_db_models.QuerySet:
@@ -82,7 +82,7 @@ class CoursesView(viewsets.ReadOnlyModelViewSet):
 
 
 class CoursesInstanceView(viewsets.GenericViewSet):
-    serializer_class = courses_serializers.CourseInstanceSerializer
+    serializer_class = courses_downstream_serializers.CourseInstanceDownstreamSerializer
 
     @drf_decorators.action(
         detail=False,
@@ -93,7 +93,7 @@ class CoursesInstanceView(viewsets.GenericViewSet):
         operation_summary="Create Course Instance",
         operation_description="Each course instance represents a specific ```course code```, ```year``` and ```semester```.",
         responses={
-            status.HTTP_201_CREATED: courses_serializers.CourseInstanceSerializer,
+            status.HTTP_201_CREATED: courses_downstream_serializers.CourseInstanceDownstreamSerializer,
         },
     )
     def create_course(self, request: Request, *args, **kwargs) -> Response:
@@ -118,12 +118,12 @@ class CoursesInstanceView(viewsets.GenericViewSet):
         )
 
         instance = courses_services.CourseInstanceService.get_or_create(params)
-        response_serializer = courses_serializers.CourseInstanceSerializer(instance=instance)
+        response_serializer = courses_downstream_serializers.CourseInstanceDownstreamSerializer(instance=instance)
         return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
 
 class CoursesGroupView(viewsets.GenericViewSet):
-    serializer_class = courses_serializers.CourseGroupSerializer
+    serializer_class = courses_downstream_serializers.CourseGroupDownstreamSerializer
 
     @drf_decorators.action(
         detail=False,
@@ -135,7 +135,7 @@ class CoursesGroupView(viewsets.GenericViewSet):
         operation_description="A course group is related to a specific course instance. "
                               "The group name ```00``` should be used as \"determining grades\" group.",
         responses={
-            status.HTTP_201_CREATED: courses_serializers.CourseGroupSerializer,
+            status.HTTP_201_CREATED: courses_downstream_serializers.CourseGroupDownstreamSerializer,
         },
     )
     def create_course_group(self, request: Request, *args, **kwargs) -> Response:
@@ -163,5 +163,5 @@ class CoursesGroupView(viewsets.GenericViewSet):
         )
 
         instance = courses_services.CourseGroupService.get_or_create(params)
-        response_serializer = courses_serializers.CourseGroupSerializer(instance=instance)
+        response_serializer = courses_downstream_serializers.CourseGroupDownstreamSerializer(instance=instance)
         return Response(response_serializer.data, status=status.HTTP_201_CREATED)
