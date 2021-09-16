@@ -39,6 +39,7 @@ class ExamSerializer(serializers.ModelSerializer):
     class Meta:
         model = grades_models.Exam
         fields = (
+            grades_models.Exam.exam_id.field.name,
             grades_models.Exam.course_group.field.name,
             grades_models.Exam.moed.field.name,
             grades_models.Exam.students_count.field.name,
