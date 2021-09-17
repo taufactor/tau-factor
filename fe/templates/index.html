@@ -627,7 +627,7 @@ function minimize_data(course_div, mask) {
     const course = course_div.prop("course");
     const exams = course_div.prop("exams");
 
-    // Terible code and performence - but good enough for now
+    // Terrible code and performance - but good enough for now
     $.each(mask.groups, function(index, enabled_group) {
         var course_group_id = null;
         // Try to find the correct backend group id of the current enabled group button (for a specific year and semester)
@@ -658,7 +658,7 @@ function minimize_data(course_div, mask) {
         }
         
         for (const exam of exams) {
-            if (exam.course_group_id === course_group_id && $.inArray(exam.moed.toString(), moeds) >= 0 ) {
+            if (exam.course_group.course_group_id === course_group_id && $.inArray(exam.moed.toString(), moeds) >= 0 ) {
                 new_data.push({
                     year: enabled_group.year,
                     semester: enabled_group.semester,
