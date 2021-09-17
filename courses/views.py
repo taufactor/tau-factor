@@ -81,7 +81,45 @@ class CoursesView(viewsets.ReadOnlyModelViewSet):
         return Response(grades_serializers.ExamSerializer(exam).data)
 
 
-class CoursesInstanceView(viewsets.GenericViewSet):
+class CoursesInstanceView(viewsets.ReadOnlyModelViewSet):
+    serializer_class = courses_downstream_serializers.CourseInstanceDownstreamSerializer
+    filterset_class = courses_filters.CoursesInstanceFilters
+
+    def get_queryset(self) -> django_db_models.QuerySet:
+        return courses_models.CourseInstance.objects.all().prefetch_related(
+            django_db_models.Prefetch(
+                lookup=courses_models.CourseInstance.COURSE_NAMES_RELATED_FIELD_NAME,
+                queryset=courses_models.CourseInstanceName.objects.order_by(
+                    courses_models.CourseInstanceName.course_name.field.name,
+                )
+            ),
+            django_db_models.Prefetch(
+                lookup=courses_models.CourseInstance.COURSE_GROUPS_RELATED_FIELD_NAME,
+                queryset=courses_models.CourseGroup.objects.order_by(
+                    courses_models.CourseGroup.course_group_name.field.name,
+                )
+            ),
+            django_db_models.Prefetch(
+                lookup="__".join((
+                    courses_models.CourseInstance.COURSE_GROUPS_RELATED_FIELD_NAME,
+                    courses_models.CourseGroup.TEACHERS_RELATED_FIELD_NAME,
+                )),
+                queryset=courses_models.CourseGroupTeacher.objects.order_by(
+                    courses_models.CourseGroupTeacher.teacher_name.field.name,
+                )
+            ),
+        )
+
+    @swagger_auto_schema(operation_summary="List Courses Instances", operation_description="List course instances.")
+    def list(self, request: Request, *args, **kwargs) -> Response:
+        return super(CoursesInstanceView, self).list(request)
+
+    @swagger_auto_schema(operation_summary="Retrieve Course Instance", operation_description="Retrieve a course instance.")
+    def retrieve(self, request: Request, *args, **kwargs) -> Response:
+        return super(CoursesInstanceView, self).retrieve(request)
+
+
+class CoursesInstancePrivateView(viewsets.GenericViewSet):
     serializer_class = courses_downstream_serializers.CourseInstanceDownstreamSerializer
 
     @drf_decorators.action(
