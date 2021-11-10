@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "extension",
     "grades",
     "ratings",
+    "syllabus",
 ]
 
 MIDDLEWARE = [
