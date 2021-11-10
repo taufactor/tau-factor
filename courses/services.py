@@ -1,6 +1,7 @@
 from django.db import models as django_db_models
 from django.db import transaction as django_db_transaction
 
+from common import defines as common_defines
 from courses import defines as courses_defines
 from courses import models as courses_models
 from courses import non_persistent_models as courses_non_persistent_models
@@ -31,7 +32,7 @@ class CourseService(object):
 
         new_most_common_names = []
 
-        for language in courses_defines.Language:
+        for language in common_defines.Language.all():
             most_common_course_name_qs = courses_models.CourseInstanceName.objects.filter(**{
                 "__".join((
                     courses_models.CourseInstanceName.course_instance.field.name,

@@ -14,8 +14,3 @@ class Semester(ChoiceEnum):
     B = "Semester B"
     SUMMER = "Summer Semester"
     ALL_YEAR = "All Year"
-
-
-class Language(ChoiceEnum):
-    EN = "English"
-    HE = "Hebrew"

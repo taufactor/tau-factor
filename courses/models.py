@@ -5,6 +5,7 @@ from enumchoicefield import EnumChoiceField
 from django.core import validators as django_validators
 from django.db import models as django_db_models
 
+from common import defines as common_defines
 from courses import defines as courses_defines
 
 
@@ -88,7 +89,7 @@ class CourseInstance(django_db_models.Model):
 class CourseName(django_db_models.Model):
     course_name_id = django_db_models.UUIDField(primary_key=True, default=uuid.uuid4)
 
-    language = EnumChoiceField(courses_defines.Language, null=False)
+    language = EnumChoiceField(common_defines.Language, null=False)
 
     course_name = django_db_models.CharField(
         max_length=courses_defines.COURSE_NAME_MAX_LENGTH,
@@ -198,4 +199,3 @@ class CourseGroupTeacher(django_db_models.Model):
 
     def __str__(self):
         return f"CourseGroupTeacher({repr(self)})"
-
