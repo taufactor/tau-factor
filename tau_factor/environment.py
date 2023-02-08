@@ -1,4 +1,5 @@
 import os
+import typing
 from distutils import dist
 
 
@@ -6,8 +7,8 @@ def set_env(name: str, value: str) -> None:
     os.environ[name] = value
 
 
-def env_to_str(name: str, default_value: str = None) -> str:
-    return os.environ.get(name, default_value)
+def env_to_str(name: str, default_value: typing.Optional[str] = None) -> str:
+    return os.environ[name] if default_value is None else os.getenv(name, default_value)
 
 
 def env_to_bool(name: str, default_value: bool = False) -> bool:

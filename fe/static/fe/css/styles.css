@@ -229,3 +229,21 @@ div.rating img {
 .fb-like > span, .fb-login-button > span {
     vertical-align: middle !important;
 }
+
+.paybox-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.paybox-button {
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    background-color: inherit;
+    transition: transform 0.3s ease-in-out;
+}
+
+button:hover.paybox-button {
+      transform: scale(1.2);
+}
