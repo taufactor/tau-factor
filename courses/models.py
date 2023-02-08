@@ -71,7 +71,7 @@ class CourseInstance(django_db_models.Model):
             django_validators.MaxValueValidator(2040),
         ),
     )
-    semester = EnumChoiceField(courses_defines.Semester, null=False)
+    semester = EnumChoiceField(common_defines.Semester, null=False)
 
     class Meta:
         unique_together = ("course", "year", "semester")

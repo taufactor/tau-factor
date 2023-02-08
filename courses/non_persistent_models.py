@@ -8,7 +8,7 @@ from courses import models as courses_models
 class CreateCourseInstanceParams(typing.NamedTuple):
     course_code: str
     year: int
-    semester: courses_defines.Semester
+    semester: common_defines.Semester
     course_instance_names: typing.Dict[common_defines.Language, str]
 
 
