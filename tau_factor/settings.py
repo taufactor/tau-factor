@@ -152,4 +152,4 @@ SITE_NAME_EN = env.SITE_NAME_EN
 SITE_NAME_HE = env.SITE_NAME_HE
 
 # Activate Django-Heroku.
-django_heroku.settings(locals(), databases=False)
+django_heroku.settings(locals())
