@@ -5,7 +5,6 @@ from courses import views as courses_views
 
 public_router = routers.DefaultRouter()
 public_router.register("courses", courses_views.CoursesView, basename="courses")
-public_router.register("courses", courses_views.CoursesView, basename="courses")
 public_router.register("courses_instances", courses_views.CoursesInstanceView, basename="course-instances")
 public_urlpatterns = public_router.urls
 
