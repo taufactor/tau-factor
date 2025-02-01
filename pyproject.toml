@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "tau-factor"
+version = "1.0.1"
+description = "Tau Factor website"
+authors = ["Tau-Factor <factor.tau@gmail.com>"]
+readme = "README.md"
+packages = [{include = "tau_factor"}]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^3.2.3"
+django-cors-headers = "^3.7.0"
+django-enumchoicefield = "^2.0.0"
+django-filter = "^2.4.0"
+django-heroku = "^0.3.1"
+django-pglocks = "^1.0.4"
+djangorestframework = "^3.12.4"
+typing-extensions = "^3.10.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
